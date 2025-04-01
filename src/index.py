@@ -9,7 +9,6 @@ def main():
     pygame.display.set_caption("Ristinolla")
     grid = Grid(SIZE, CELL_SIZE)
     pygame.init()
-    grid.all_sprites.draw(display)
     running = True
     while running:
         for event in pygame.event.get():
