@@ -18,6 +18,8 @@ class Grid:
 
     def add(self, x, y):
         unnormalized_x, unnormalized_y = self._unnormalize(x, y)
+        unnormalized_x = min(unnormalized_x, self.size - 1)
+        unnormalized_y = min(unnormalized_y, self.size - 1)
         if self.x_turn:
             self._add_x(unnormalized_x, unnormalized_y)
         else:
