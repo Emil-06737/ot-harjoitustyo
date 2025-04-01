@@ -14,11 +14,7 @@ class Grid:
         self.all_sprites = pygame.sprite.Group()
         self._init_grid()
         self._add_empties()
-        self.all_sprites.add(
-            self.empties,
-            self.xs,
-            self.os
-        )
+        self._update_all_sprites()
 
     def add(self, x, y):
         if self.x_turn:
@@ -30,7 +26,7 @@ class Grid:
         if not self.grid[y][x]:
             new = X(x*self.cell_size, y*self.cell_size)
             self.xs.add(new)
-            self.all_sprites.add(new)
+            self._update_all_sprites()
             self.grid[y][x] = 1
             self.x_turn = False
 
@@ -38,7 +34,7 @@ class Grid:
         if not self.grid[y][x]:
             new = O(x*self.cell_size, y*self.cell_size)
             self.os.add(new)
-            self.all_sprites.add(new)
+            self._update_all_sprites()
             self.grid[y][x] = 2
             self.x_turn = True
 
@@ -51,3 +47,11 @@ class Grid:
         self.grid = []
         for _ in range(self.size):
             self.grid.append(self.size*[0])
+
+    def _update_all_sprites(self):
+        self.all_sprites.empty()
+        self.all_sprites.add(
+            self.empties,
+            self.xs,
+            self.os
+        )
