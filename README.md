@@ -10,7 +10,7 @@ Pelin voittaa se pelaaja, jonka tarpeeksi monesta merkistä muodostuu katkeamato
 
 ## Asennusohjeet
 
-1. Aja Asennuskomento:
+1. Aja asennuskomento:
 
 ```bash
 poetry install
