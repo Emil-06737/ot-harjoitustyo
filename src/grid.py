@@ -17,10 +17,11 @@ class Grid:
         self._update_all_sprites()
 
     def add(self, x, y):
+        unnormalized_x, unnormalized_y = self._unnormalize(x, y)
         if self.x_turn:
-            self._add_x(x, y)
+            self._add_x(unnormalized_x, unnormalized_y)
         else:
-            self._add_o(x, y)
+            self._add_o(unnormalized_x, unnormalized_y)
 
     def _add_x(self, x, y):
         if not self.grid[y][x]:
@@ -55,3 +56,6 @@ class Grid:
             self.xs,
             self.os
         )
+
+    def _unnormalize(self, x, y):
+        return (x // self.cell_size, y // self.cell_size)

@@ -12,25 +12,9 @@ def main():
     running = True
     while running:
         for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_1:
-                    grid.add(0,0)
-                if event.key == pygame.K_2:
-                    grid.add(1,0)
-                if event.key == pygame.K_3:
-                    grid.add(2,0)
-                if event.key == pygame.K_4:
-                    grid.add(0,1)
-                if event.key == pygame.K_5:
-                    grid.add(1,1)
-                if event.key == pygame.K_6:
-                    grid.add(2,1)
-                if event.key == pygame.K_7:
-                    grid.add(0,2)
-                if event.key == pygame.K_8:
-                    grid.add(1,2)
-                if event.key == pygame.K_9:
-                    grid.add(2,2)
+            if event.type == pygame.MOUSEBUTTONUP:
+                pos = pygame.mouse.get_pos()
+                grid.add(pos[0], pos[1])
             if event.type == pygame.QUIT:
                 running = False
             grid.all_sprites.draw(display)
