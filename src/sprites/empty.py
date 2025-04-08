@@ -1,5 +1,5 @@
-import pygame
 import os
+import pygame
 
 class Empty(pygame.sprite.Sprite):
     def __init__(self, x, y):

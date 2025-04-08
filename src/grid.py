@@ -3,6 +3,7 @@ from sprites.empty import Empty
 from sprites.x import X
 from sprites.o import O
 
+
 class Grid:
     def __init__(self, size, cell_size, victory_requirement=3):
         self.victory_requirement = victory_requirement
@@ -82,7 +83,8 @@ class Grid:
             current_line = [(x, 0)]
             for y in range(1, self.size):
                 current_coordinates = (x, y)
-                current = self.grid[current_coordinates[1]][current_coordinates[0]]
+                current = self.grid[current_coordinates[1]
+                                    ][current_coordinates[0]]
                 if current == previous:
                     counter += 1
                     current_line.append(current_coordinates)
@@ -102,7 +104,8 @@ class Grid:
             current_line = [(0, y)]
             for x in range(1, self.size):
                 current_coordinates = (x, y)
-                current = self.grid[current_coordinates[1]][current_coordinates[0]]
+                current = self.grid[current_coordinates[1]
+                                    ][current_coordinates[0]]
                 if current == previous:
                     counter += 1
                     current_line.append(current_coordinates)
@@ -127,7 +130,8 @@ class Grid:
             current_line = [(0, y)]
             for increment in range(1, self.size - y):
                 current_coordinates = (increment, y + increment)
-                current = self.grid[current_coordinates[1]][current_coordinates[0]]
+                current = self.grid[current_coordinates[1]
+                                    ][current_coordinates[0]]
                 if current == previous:
                     counter += 1
                     current_line.append(current_coordinates)
@@ -144,7 +148,8 @@ class Grid:
             current_line = [(x, 0)]
             for increment in range(1, self.size - x):
                 current_coordinates = (x + increment, increment)
-                current = self.grid[current_coordinates[1]][current_coordinates[0]]
+                current = self.grid[current_coordinates[1]
+                                    ][current_coordinates[0]]
                 if current == previous:
                     counter += 1
                     current_line.append(current_coordinates)
@@ -164,7 +169,8 @@ class Grid:
             current_line = [(0, y)]
             for increment in range(1, y + 1):
                 current_coordinates = (increment, y - increment)
-                current = self.grid[current_coordinates[1]][current_coordinates[0]]
+                current = self.grid[current_coordinates[1]
+                                    ][current_coordinates[0]]
                 if current == previous:
                     counter += 1
                     current_line.append(current_coordinates)
@@ -180,8 +186,10 @@ class Grid:
             previous = self.grid[self.size - 1][x]
             current_line = [(x, self.size - 1)]
             for increment in range(1, self.size - x):
-                current_coordinates = (x + increment, self.size - 1 - increment)
-                current = self.grid[current_coordinates[1]][current_coordinates[0]]
+                current_coordinates = (
+                    x + increment, self.size - 1 - increment)
+                current = self.grid[current_coordinates[1]
+                                    ][current_coordinates[0]]
                 if current == previous:
                     counter += 1
                     current_line.append(current_coordinates)
@@ -198,10 +206,12 @@ class Grid:
         symbol = self.grid[line[0][1]][line[0][0]]
         for coordinates in line:
             if symbol == 1:
-                red_symbol = X(coordinates[0] * self.cell_size, coordinates[1] * self.cell_size, "red")
+                red_symbol = X(
+                    coordinates[0] * self.cell_size, coordinates[1] * self.cell_size, "red")
                 self.reds.add(red_symbol)
             else:
-                red_symbol = O(coordinates[0] * self.cell_size, coordinates[1] * self.cell_size, "red")
+                red_symbol = O(
+                    coordinates[0] * self.cell_size, coordinates[1] * self.cell_size, "red")
                 self.reds.add(red_symbol)
         self._update_all_sprites()
         self.game_over = True
