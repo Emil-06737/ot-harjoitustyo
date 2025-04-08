@@ -41,3 +41,9 @@ Testikattavuuskomento:
 ```bash
 poetry run invoke coverage-report
 ```
+
+Koodin tyylin tarkastuskomento:
+
+```bash
+poetry run invoke lint
+```
