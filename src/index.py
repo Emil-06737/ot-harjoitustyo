@@ -14,7 +14,7 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONUP:
                 pos = pygame.mouse.get_pos()
-                grid.add(pos[0], pos[1])
+                grid.add(pos[0] // CELL_SIZE, pos[1] // CELL_SIZE)
             if event.type == pygame.QUIT:
                 running = False
             grid.all_sprites.draw(display)

@@ -23,15 +23,14 @@ class Grid:
     def add(self, x, y):
         if self.game_over:
             return
-        unnormalized_x, unnormalized_y = self._unnormalize(x, y)
-        unnormalized_x = min(unnormalized_x, self.size - 1)
-        unnormalized_y = min(unnormalized_y, self.size - 1)
-        if self.grid[unnormalized_y][unnormalized_x]:
+        x = min(x, self.size - 1)
+        y = min(y, self.size - 1)
+        if self.grid[y][x]:
             return
         if self.x_turn:
-            self._add_x(unnormalized_x, unnormalized_y)
+            self._add_x(x, y)
         else:
-            self._add_o(unnormalized_x, unnormalized_y)
+            self._add_o(x, y)
 
     def _add_x(self, x, y):
         new = X(x*self.cell_size, y*self.cell_size)
@@ -68,9 +67,6 @@ class Grid:
             self.reds
         )
 
-    def _unnormalize(self, x, y):
-        return (x // self.cell_size, y // self.cell_size)
-
     def _check_victory(self, x, y):
         if self._check_vertical_victory(x, y):
             return
@@ -97,7 +93,7 @@ class Grid:
             self._finish_game(line)
             return True
         return False
-        
+
 
     def _check_horizontal_victory(self, x, y):
         symbol = self.grid[y][x]

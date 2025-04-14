@@ -9,10 +9,6 @@ class TestGrid(unittest.TestCase):
         self.grid._add_x(0, 0)
         self.assertEqual(self.grid.grid, [["x",0,0],[0,0,0],[0,0,0]])
 
-    def test__unnormalize_unnormalizes_correctly(self):
-        result = self.grid._unnormalize(121, 152)
-        self.assertEqual(result, (2, 3))
-
     def test__check_vertical_victory_recognizes_vertical_victory(self):
         self.grid.grid = [["x", "o", 0],
                           ["x", "o", 0],
