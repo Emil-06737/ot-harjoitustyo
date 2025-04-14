@@ -21,31 +21,33 @@ class Grid:
         self._update_all_sprites()
 
     def add(self, x, y):
+        if self.game_over:
+            return
         unnormalized_x, unnormalized_y = self._unnormalize(x, y)
         unnormalized_x = min(unnormalized_x, self.size - 1)
         unnormalized_y = min(unnormalized_y, self.size - 1)
+        if self.grid[unnormalized_y][unnormalized_x]:
+            return
         if self.x_turn:
             self._add_x(unnormalized_x, unnormalized_y)
         else:
             self._add_o(unnormalized_x, unnormalized_y)
 
     def _add_x(self, x, y):
-        if not self.grid[y][x] and not self.game_over:
-            new = X(x*self.cell_size, y*self.cell_size)
-            self.xs.add(new)
-            self._update_all_sprites()
-            self.grid[y][x] = "x"
-            self.x_turn = False
-            self._check_victory(x, y)
+        new = X(x*self.cell_size, y*self.cell_size)
+        self.xs.add(new)
+        self._update_all_sprites()
+        self.grid[y][x] = "x"
+        self.x_turn = False
+        self._check_victory(x, y)
 
     def _add_o(self, x, y):
-        if not self.grid[y][x] and not self.game_over:
-            new = O(x*self.cell_size, y*self.cell_size)
-            self.os.add(new)
-            self._update_all_sprites()
-            self.grid[y][x] = "o"
-            self.x_turn = True
-            self._check_victory(x, y)
+        new = O(x*self.cell_size, y*self.cell_size)
+        self.os.add(new)
+        self._update_all_sprites()
+        self.grid[y][x] = "o"
+        self.x_turn = True
+        self._check_victory(x, y)
 
     def _add_empties(self):
         for y in range(self.size):
