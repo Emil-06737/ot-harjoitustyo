@@ -34,7 +34,7 @@ class Grid:
             new = X(x*self.cell_size, y*self.cell_size)
             self.xs.add(new)
             self._update_all_sprites()
-            self.grid[y][x] = 1
+            self.grid[y][x] = "x"
             self.x_turn = False
             self._check_victory(x, y)
 
@@ -43,7 +43,7 @@ class Grid:
             new = O(x*self.cell_size, y*self.cell_size)
             self.os.add(new)
             self._update_all_sprites()
-            self.grid[y][x] = 2
+            self.grid[y][x] = "o"
             self.x_turn = True
             self._check_victory(x, y)
 
@@ -173,7 +173,7 @@ class Grid:
     def _finish_game(self, line):
         symbol = self.grid[line[0][1]][line[0][0]]
         for coordinates in line:
-            if symbol == 1:
+            if symbol == "x":
                 red_symbol = X(
                     coordinates[0] * self.cell_size, coordinates[1] * self.cell_size, "red")
                 self.reds.add(red_symbol)
