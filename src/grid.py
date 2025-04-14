@@ -5,7 +5,7 @@ from sprites.o import O
 
 
 class Grid:
-    def __init__(self, size, cell_size, victory_requirement=3):
+    def __init__(self, size, cell_size, victory_requirement=5):
         self.victory_requirement = victory_requirement
         self.game_over = False
         self.x_turn = True

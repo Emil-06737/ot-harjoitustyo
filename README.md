@@ -48,3 +48,11 @@ Koodin tyylin tarkastuskomento:
 ```bash
 poetry run invoke lint
 ```
+
+## Pelin asetusten muuttaminen
+
+Voit muuttaa pelin kokoa ja/tai voittosuoran pituutta käynnistyksen yhteydessä muuttamalla ympäristömuutuujia SIZE ja/tai LENGTH. Jos esim. haluat, että ruudukon koko on 20x20 ja että voittosuoran pituus on 6, aja seuraava komento:
+
+```bash
+SIZE=20 LENGTH=6 poetry run invoke start
+```
