@@ -25,6 +25,18 @@ class TestGrid(unittest.TestCase):
                           [0, 0, 0]]
         self.assertEqual(self.grid._check_vertical_victory(), False)
 
+    def test__check_horizontal_victory_recognizes_horizontal_victory(self):
+        self.grid.grid = [[2, 2, 0],
+                          [1, 1, 1],
+                          [0, 0, 0]]
+        self.assertEqual(self.grid._check_horizontal_victory(), True)
+
+    def test__check_horizontal_victory_returns_False_when_there_is_no_horizontal_victory(self):
+        self.grid.grid = [[1, 0, 0],
+                          [0, 0, 0],
+                          [0, 0, 0]]
+        self.assertEqual(self.grid._check_horizontal_victory(), False)
+
     def test__check_descending_diagonal_victory_recognizes_descending_diagonal_victory(self):
         self.grid.grid = [[1, 0, 0],
                           [2, 1, 0],
@@ -36,3 +48,15 @@ class TestGrid(unittest.TestCase):
                           [2, 1, 0],
                           [0, 0, 2]]
         self.assertEqual(self.grid._check_descending_diagonal_victory(), False)
+
+    def test__check_ascending_diagonal_victory_recognizes_ascending_diagonal_victory(self):
+        self.grid.grid = [[2, 0, 1],
+                          [2, 1, 0],
+                          [1, 0, 0]]
+        self.assertEqual(self.grid._check_ascending_diagonal_victory(), True)
+
+    def test__check_ascending_diagonal_victory_return_False_when_there_is_no_ascending_diagonal_victory(self):
+        self.grid.grid = [[1, 0, 0],
+                          [2, 1, 0],
+                          [0, 0, 2]]
+        self.assertEqual(self.grid._check_ascending_diagonal_victory(), False)
