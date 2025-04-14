@@ -17,6 +17,7 @@ class Loop():
                 self._grid.add(pos[0] // self._cell_size, pos[1] // self._cell_size)
             if occurence.type == pygame.QUIT:
                 return False
+        return True
 
     def begin(self):
         while True:

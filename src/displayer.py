@@ -6,5 +6,5 @@ class Displayer:
         self._display = display
 
     def display(self):
-            self._grid.all_sprites.draw(self._display)
-            pygame.display.update()
+        self._grid.all_sprites.draw(self._display)
+        pygame.display.update()

@@ -21,11 +21,11 @@ def main():
 def get_setting_variables():
     try:
         size = int(os.environ["SIZE"])
-    except:
+    except KeyError:
         size = 13
     try:
         length = int(os.environ["LENGTH"])
-    except:
+    except KeyError:
         length = 5
     return size, length
 
