@@ -1,5 +1,8 @@
 import pygame
 from grid import Grid
+from displayer import Displayer
+from occurence_sequence import OccurenceSequence
+from loop import Loop
 
 SIZE = 3
 CELL_SIZE = 50
@@ -8,18 +11,11 @@ def main():
     display = pygame.display.set_mode((SIZE * CELL_SIZE, SIZE * CELL_SIZE))
     pygame.display.set_caption("Ristinolla")
     grid = Grid(SIZE, CELL_SIZE)
+    displayer = Displayer(grid, display)
+    occurence_sequence = OccurenceSequence()
+    loop = Loop(displayer, occurence_sequence, CELL_SIZE, grid)
     pygame.init()
-    running = True
-    while running:
-        for event in pygame.event.get():
-            if event.type == pygame.MOUSEBUTTONUP:
-                pos = pygame.mouse.get_pos()
-                grid.add(pos[0] // CELL_SIZE, pos[1] // CELL_SIZE)
-            if event.type == pygame.QUIT:
-                running = False
-            grid.all_sprites.draw(display)
-            pygame.display.update()
-    pygame.quit()
+    loop.begin()
 
 if __name__ == "__main__":
     main()
