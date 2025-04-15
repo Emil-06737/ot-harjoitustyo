@@ -1,10 +1,10 @@
 import os
 import pygame
 from grid import Grid
-from displayer import Displayer
-from occurence_sequence import OccurenceSequence
-from loop import Loop
-from timer import Timer
+from ui.displayer import Displayer
+from ui.occurence_sequence import OccurenceSequence
+from ui.loop import Loop
+from ui.timer import Timer
 
 CELL_SIZE = 50
 
