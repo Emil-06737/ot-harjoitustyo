@@ -8,9 +8,6 @@ class Loop():
         self._grid = grid
         self._timer = timer
 
-    def _display(self):
-        self._displayer.display()
-
     def _manage_occurences(self):
         for occurence in self._occurence_sequence.retrieve():
             if occurence.type == pygame.MOUSEBUTTONUP:
@@ -24,5 +21,5 @@ class Loop():
         while True:
             if self._manage_occurences() is False:
                 break
-            self._display()
+            self._displayer.display()
             self._timer.update()
