@@ -9,6 +9,10 @@ Pelin voittaa se pelaaja, jonka tarpeeksi monesta merkistä muodostuu katkeamato
 - [Changelog](./dokumentaatio/changelog.md)
 - [Arkkitehtuuri](./dokumentaatio/arkkitehtuuri.md)
 
+## Release
+
+[Release](https://github.com/Emil-06737/ot-harjoitustyo/releases/tag/viikko5)
+
 ## Asennusohjeet
 
 1. Aja asennuskomento:
