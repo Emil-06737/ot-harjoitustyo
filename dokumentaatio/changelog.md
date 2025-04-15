@@ -11,3 +11,11 @@
 - Peli päättyy, kun voiton ehto täyttyy eli kun kolmesta saman pelaajan merkistä muodostuu katkeamaton suora.
 - Peli päättyy niin, että voiton aiheuttava suora muuttuu punaiseksi ja siirtoja ei voi enää tehdä.
 - Testattu hieman voiton tarkistavia funktioita ja unnormalize -funktiota.
+
+## Viikko 5
+
+- Tehty tuki vapaavalintaiselle ruudukkokoolle ja vapaavalintaiselle voittosuoran pituudelle.
+- Oletuksena ruudukon koko on nyt 13 x 13 ja voittosuoran pituus on nyt 5.
+- Voittoehdon tarkistavia funktioita on muutettu niin, että ne nyt hyödyntävät tietoa juuri lisätyn merkin sijainnista, ja testit on päivitetty tämän mukaan.
+- Tehty lisää testejä voiton tarkistaville funktioille.
+- Päivitetty sovelluksen rakennetta luomalla käyttöliittymäluokkia, joita hyödynnetään koodissa.
