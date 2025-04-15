@@ -4,6 +4,7 @@ from grid import Grid
 from displayer import Displayer
 from occurence_sequence import OccurenceSequence
 from loop import Loop
+from timer import Timer
 
 CELL_SIZE = 50
 
@@ -14,7 +15,8 @@ def main():
     grid = Grid(size, CELL_SIZE, length)
     displayer = Displayer(grid, display)
     occurence_sequence = OccurenceSequence()
-    loop = Loop(displayer, occurence_sequence, CELL_SIZE, grid)
+    timer = Timer()
+    loop = Loop(displayer, occurence_sequence, CELL_SIZE, grid, timer)
     pygame.init()
     loop.begin()
 

@@ -1,11 +1,12 @@
 import pygame
 
 class Loop():
-    def __init__(self, displayer, occurence_sequence, cell_size, grid):
+    def __init__(self, displayer, occurence_sequence, cell_size, grid, timer):
         self._displayer = displayer
         self._occurence_sequence = occurence_sequence
         self._cell_size = cell_size
         self._grid = grid
+        self._timer = timer
 
     def _display(self):
         self._displayer.display()
@@ -24,3 +25,4 @@ class Loop():
             if self._manage_occurences() is False:
                 break
             self._display()
+            self._timer.update()
