@@ -7,7 +7,7 @@ from sprites.o import O
 class Grid:
     def __init__(self, size, cell_size, victory_requirement=5):
         self._victory_requirement = victory_requirement
-        self._game_over = False
+        self.game_over = False
         self._x_turn = True
         self._size = size
         self._cell_size = cell_size
@@ -21,7 +21,7 @@ class Grid:
         self._update_all_sprites()
 
     def add(self, x, y):
-        if self._game_over or x >= self._size or y >= self._size:
+        if self.game_over or x >= self._size or y >= self._size:
             return
         if self._grid[y][x]:
             return
@@ -178,4 +178,4 @@ class Grid:
                     coordinates[0] * self._cell_size, coordinates[1] * self._cell_size, "red")
                 self._reds.add(red_symbol)
         self._update_all_sprites()
-        self._game_over = True
+        self.game_over = True
