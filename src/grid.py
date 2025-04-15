@@ -6,63 +6,63 @@ from sprites.o import O
 
 class Grid:
     def __init__(self, size, cell_size, victory_requirement=5):
-        self.victory_requirement = victory_requirement
-        self.game_over = False
-        self.x_turn = True
-        self.size = size
-        self.cell_size = cell_size
-        self.empties = pygame.sprite.Group()
-        self.xs = pygame.sprite.Group()
-        self.os = pygame.sprite.Group()
-        self.reds = pygame.sprite.Group()
+        self._victory_requirement = victory_requirement
+        self._game_over = False
+        self._x_turn = True
+        self._size = size
+        self._cell_size = cell_size
+        self._empties = pygame.sprite.Group()
+        self._xs = pygame.sprite.Group()
+        self._os = pygame.sprite.Group()
+        self._reds = pygame.sprite.Group()
         self.all_sprites = pygame.sprite.Group()
         self._init_grid()
         self._add_empties()
         self._update_all_sprites()
 
     def add(self, x, y):
-        if self.game_over or x >= self.size or y >= self.size:
+        if self._game_over or x >= self._size or y >= self._size:
             return
         if self.grid[y][x]:
             return
-        if self.x_turn:
+        if self._x_turn:
             self._add_x(x, y)
         else:
             self._add_o(x, y)
 
     def _add_x(self, x, y):
-        new = X(x*self.cell_size, y*self.cell_size)
-        self.xs.add(new)
+        new = X(x*self._cell_size, y*self._cell_size)
+        self._xs.add(new)
         self._update_all_sprites()
         self.grid[y][x] = "x"
-        self.x_turn = False
+        self._x_turn = False
         self._check_victory(x, y)
 
     def _add_o(self, x, y):
-        new = O(x*self.cell_size, y*self.cell_size)
-        self.os.add(new)
+        new = O(x*self._cell_size, y*self._cell_size)
+        self._os.add(new)
         self._update_all_sprites()
         self.grid[y][x] = "o"
-        self.x_turn = True
+        self._x_turn = True
         self._check_victory(x, y)
 
     def _add_empties(self):
-        for y in range(self.size):
-            for x in range(self.size):
-                self.empties.add(Empty(x*self.cell_size, y*self.cell_size))
+        for y in range(self._size):
+            for x in range(self._size):
+                self._empties.add(Empty(x*self._cell_size, y*self._cell_size))
 
     def _init_grid(self):
         self.grid = []
-        for _ in range(self.size):
-            self.grid.append(self.size*[0])
+        for _ in range(self._size):
+            self.grid.append(self._size*[0])
 
     def _update_all_sprites(self):
         self.all_sprites.empty()
         self.all_sprites.add(
-            self.empties,
-            self.xs,
-            self.os,
-            self.reds
+            self._empties,
+            self._xs,
+            self._os,
+            self._reds
         )
 
     def _check_victory(self, x, y):
@@ -81,13 +81,13 @@ class Grid:
                 line.append((x, y1))
             else:
                 break
-        for y1 in range(y + 1, self.size):
+        for y1 in range(y + 1, self._size):
             current_symbol = self.grid[y1][x]
             if current_symbol == symbol:
                 line.append((x, y1))
             else:
                 break
-        if len(line) >= self.victory_requirement:
+        if len(line) >= self._victory_requirement:
             self._finish_game(line)
             return True
         return False
@@ -102,13 +102,13 @@ class Grid:
                 line.append((x1, y))
             else:
                 break
-        for x1 in range(x + 1, self.size):
+        for x1 in range(x + 1, self._size):
             current_symbol = self.grid[y][x1]
             if current_symbol == symbol:
                 line.append((x1, y))
             else:
                 break
-        if len(line) >= self.victory_requirement:
+        if len(line) >= self._victory_requirement:
             self._finish_game(line)
             return True
         return False
@@ -129,7 +129,7 @@ class Grid:
                 line.append((current_x, current_y))
             else:
                 break
-        for increment in range(1, self.size - max(x, y)):
+        for increment in range(1, self._size - max(x, y)):
             current_y = y + increment
             current_x = x + increment
             current_symbol = self.grid[current_y][current_x]
@@ -137,7 +137,7 @@ class Grid:
                 line.append((current_x, current_y))
             else:
                 break
-        if len(line) >= self.victory_requirement:
+        if len(line) >= self._victory_requirement:
             self._finish_game(line)
             return True
         return False
@@ -145,7 +145,7 @@ class Grid:
     def _check_ascending_diagonal_victory(self, x, y):
         symbol = self.grid[y][x]
         line = [(x, y)]
-        for increment in range(1, min(x + 1, self.size - y)):
+        for increment in range(1, min(x + 1, self._size - y)):
             current_y = y + increment
             current_x = x - increment
             current_symbol = self.grid[current_y][current_x]
@@ -153,7 +153,7 @@ class Grid:
                 line.append((current_x, current_y))
             else:
                 break
-        for increment in range(1, min(self.size - x, y + 1)):
+        for increment in range(1, min(self._size - x, y + 1)):
             current_y = y - increment
             current_x = x + increment
             current_symbol = self.grid[current_y][current_x]
@@ -161,7 +161,7 @@ class Grid:
                 line.append((current_x, current_y))
             else:
                 break
-        if len(line) >= self.victory_requirement:
+        if len(line) >= self._victory_requirement:
             self._finish_game(line)
             return True
         return False
@@ -171,11 +171,11 @@ class Grid:
         for coordinates in line:
             if symbol == "x":
                 red_symbol = X(
-                    coordinates[0] * self.cell_size, coordinates[1] * self.cell_size, "red")
-                self.reds.add(red_symbol)
+                    coordinates[0] * self._cell_size, coordinates[1] * self._cell_size, "red")
+                self._reds.add(red_symbol)
             else:
                 red_symbol = O(
-                    coordinates[0] * self.cell_size, coordinates[1] * self.cell_size, "red")
-                self.reds.add(red_symbol)
+                    coordinates[0] * self._cell_size, coordinates[1] * self._cell_size, "red")
+                self._reds.add(red_symbol)
         self._update_all_sprites()
-        self.game_over = True
+        self._game_over = True
