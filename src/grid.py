@@ -21,10 +21,8 @@ class Grid:
         self._update_all_sprites()
 
     def add(self, x, y):
-        if self.game_over:
+        if self.game_over or x >= self.size or y >= self.size:
             return
-        x = min(x, self.size - 1)
-        y = min(y, self.size - 1)
         if self.grid[y][x]:
             return
         if self.x_turn:
