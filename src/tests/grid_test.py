@@ -5,9 +5,18 @@ class TestGrid(unittest.TestCase):
     def setUp(self):
         self.grid = Grid(3, 50, 3)
 
-    def test__add_updates_the_grid_correctly(self):
+    def test_add_updates_the_grid_correctly(self):
         self.grid.add(0, 0)
         self.assertEqual(self.grid._grid, [["x",0,0],[0,0,0],[0,0,0]])
+
+    def test_add_updates_the_grid_correctly_with_four_players(self):
+        self.grid = Grid(4, 50, 4, 4)
+        self.grid.add(0, 0)
+        self.grid.add(1, 0)
+        self.grid.add(2, 0)
+        self.grid.add(3, 0)
+        self.grid.add(0, 1)
+        self.assertEqual(self.grid._grid, [["x", "o", "y", "z"], ["x", 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]])
 
     def test__check_vertical_victory_recognizes_vertical_victory(self):
         self.grid._grid = [["x", "o", 0],
