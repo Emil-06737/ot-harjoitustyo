@@ -16,4 +16,4 @@ Pelin voittaa se pelaaja, jonka tarpeeksi monesta merkistä muodostuu katkeamato
 - Tekstikäyttöliittymän korvaaminen graafisella käyttöliittymällä. (tehty)
 - Tuki erisuuruisille ruudukoille. (tehty)
 - Tuki voittoehdoille, joissa vaatimus katkeamattoman suoran merkkimäärästä on erisuuruinen. (tehty)
-- Tuki useammalle kuin kahdelle pelaajalle.
+- Tuki useammalle kuin kahdelle pelaajalle. (tehty)

@@ -9,10 +9,10 @@ from ui.timer import Timer
 CELL_SIZE = 50
 
 def main():
-    size, length = get_setting_variables()
+    size, length, players = get_setting_variables()
     display = pygame.display.set_mode((size * CELL_SIZE, size * CELL_SIZE))
     pygame.display.set_caption("Ristinolla")
-    grid = Grid(size, CELL_SIZE, length)
+    grid = Grid(size, CELL_SIZE, length, players)
     displayer = Displayer(grid, display)
     occurence_sequence = OccurenceSequence()
     timer = Timer()
@@ -29,7 +29,11 @@ def get_setting_variables():
         length = int(os.environ["LENGTH"])
     except KeyError:
         length = 5
-    return size, length
+    try:
+        players = int(os.environ["PLAYERS"])
+    except KeyError:
+        players = 2
+    return size, length, players
 
 if __name__ == "__main__":
     main()

@@ -4,15 +4,15 @@ from sprites.letter import Letter
 
 
 class Grid:
-    def __init__(self, size, cell_size, victory_requirement=5):
+    def __init__(self, size, cell_size, victory_requirement=5, players=2):
         self._victory_requirement = victory_requirement
+        self._players = self._get_corrected_player_amount(players)
         self.game_over = False
-        self._x_turn = True
+        self._player_turn = 0
         self._size = size
         self._cell_size = cell_size
         self._empties = pygame.sprite.Group()
-        self._xs = pygame.sprite.Group()
-        self._os = pygame.sprite.Group()
+        self._letters = pygame.sprite.Group()
         self._reds = pygame.sprite.Group()
         self.all_sprites = pygame.sprite.Group()
         self._init_grid()
@@ -24,25 +24,11 @@ class Grid:
             return
         if self._grid[y][x]:
             return
-        if self._x_turn:
-            self._add_x(x, y)
-        else:
-            self._add_o(x, y)
-
-    def _add_x(self, x, y):
-        new = Letter("x", x*self._cell_size, y*self._cell_size)
-        self._xs.add(new)
+        letter = self._get_current_players_letter()
+        self._letters.add(Letter(letter, x*self._cell_size, y*self._cell_size))
+        self._grid[y][x] = letter
         self._update_all_sprites()
-        self._grid[y][x] = "x"
-        self._x_turn = False
-        self._check_victory(x, y)
-
-    def _add_o(self, x, y):
-        new = Letter("o", x*self._cell_size, y*self._cell_size)
-        self._os.add(new)
-        self._update_all_sprites()
-        self._grid[y][x] = "o"
-        self._x_turn = True
+        self._advance_turn()
         self._check_victory(x, y)
 
     def _add_empties(self):
@@ -59,8 +45,7 @@ class Grid:
         self.all_sprites.empty()
         self.all_sprites.add(
             self._empties,
-            self._xs,
-            self._os,
+            self._letters,
             self._reds
         )
 
@@ -173,3 +158,22 @@ class Grid:
             self._reds.add(red_symbol)
         self._update_all_sprites()
         self.game_over = True
+
+    def _advance_turn(self):
+        self._player_turn = (self._player_turn + 1) % self._players
+
+    def _get_current_players_letter(self):
+        if self._player_turn == 0:
+            return "x"
+        elif self._player_turn == 1:
+            return "o"
+        elif self._player_turn == 2:
+            return "y"
+        else:
+            return "z"
+
+    def _get_corrected_player_amount(self, players):
+        if players not in [2, 3, 4]:
+            return 2
+        else:
+            return players

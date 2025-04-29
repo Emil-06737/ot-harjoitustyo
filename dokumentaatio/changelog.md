@@ -19,3 +19,7 @@
 - Voittoehdon tarkistavia funktioita on muutettu niin, että ne nyt hyödyntävät tietoa juuri lisätyn merkin sijainnista, ja testit on päivitetty tämän mukaan.
 - Tehty lisää testejä voiton tarkistaville funktioille.
 - Päivitetty sovelluksen rakennetta luomalla käyttöliittymäluokkia, joita hyödynnetään koodissa.
+
+## Viikko 6
+
+- Lisätty tuki myös kolmelle ja neljälle pelaajalle. Tämän voi valita muuttamalla ympäristömuuttujaa PLAYERS käynnistyksen yhteydessä.
