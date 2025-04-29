@@ -11,7 +11,8 @@ Pelin voittaa se pelaaja, jonka tarpeeksi monesta merkistä muodostuu katkeamato
 
 ## Release
 
-[Release](https://github.com/Emil-06737/ot-harjoitustyo/releases/tag/viikko5)
+[Release viikko 5](https://github.com/Emil-06737/ot-harjoitustyo/releases/tag/viikko5)
+[Release viikko 6](https://github.com/Emil-06737/ot-harjoitustyo/releases/tag/viikko6)
 
 ## Asennusohjeet
 
