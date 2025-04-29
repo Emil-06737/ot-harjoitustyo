@@ -10,5 +10,5 @@
 | 8.4.       | 3      | Vaatimusmäärittelyn päivittäminen "tehty" -merkinnöillä, testien tekoa, pylintin käyttöönotto, suuren osan pylintin huomaamien tyylivirheiden korjaaminen, changelogin päivittäminen, työaikakirjanpidon päivittäminen ja luokkakaavion teko. |
 | 14.4.      | 4      | Voiton tarkistavie funktioiden muuttaminen, ohjelman rakenteen muuttaminen, lisätty tuki vapaavalintaiselle ruudukkokoollee ja voittoehdolle. |
 | 15.5.      | 1      | Tehty monta pientä pelin parannusta ja päivitetty changelogia ja työaikakirjanpitoa. |
-| 29.4.      | 1      | Lisätty tuki kolmelle ja neljälle pelaajalle. |
-| yhteensä   | 23     ||
+| 29.4.      | 2      | Lisätty tuki kolmelle ja neljälle pelaajalle ja lisätty docstringejä. |
+| yhteensä   | 24     ||

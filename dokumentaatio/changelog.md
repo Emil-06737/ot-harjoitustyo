@@ -23,3 +23,4 @@
 ## Viikko 6
 
 - Lisätty tuki myös kolmelle ja neljälle pelaajalle. Tämän voi valita muuttamalla ympäristömuuttujaa PLAYERS käynnistyksen yhteydessä.
+- Tehty docstringejä.

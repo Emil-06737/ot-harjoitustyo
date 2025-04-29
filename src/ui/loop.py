@@ -1,7 +1,20 @@
 import pygame
 
 class Loop():
+    """Luokka, joka vastaa pelin käyttöliittymän silmukasta.
+    """
+
     def __init__(self, displayer, occurence_sequence, cell_size, grid, timer):
+        """Konstruktori, joka luo silmukan.
+
+        Args:
+            displayer: Näytön päivittäjä.
+            occurence_sequence: Tapahtumien ylläpitäjä.
+            cell_size: Solun koko.
+            grid: Pelin sovelluslogiikka.
+            timer: Ajastin.
+        """
+
         self._displayer = displayer
         self._occurence_sequence = occurence_sequence
         self._cell_size = cell_size
@@ -9,6 +22,12 @@ class Loop():
         self._timer = timer
 
     def _manage_occurences(self):
+        """Käsittelee tapahtumat.
+
+        Returns:
+            False, jos peli on lopetettu, muulloin True.
+        """
+
         for occurence in self._occurence_sequence.retrieve():
             if occurence.type == pygame.MOUSEBUTTONUP:
                 pos = pygame.mouse.get_pos()
@@ -18,6 +37,9 @@ class Loop():
         return True
 
     def begin(self):
+        """Käynnistää silmukan.
+        """
+
         while True:
             if self._manage_occurences() is False:
                 break
