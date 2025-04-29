@@ -1,7 +1,6 @@
 import pygame
 from sprites.empty import Empty
-from sprites.x import X
-from sprites.o import O
+from sprites.letter import Letter
 
 
 class Grid:
@@ -31,7 +30,7 @@ class Grid:
             self._add_o(x, y)
 
     def _add_x(self, x, y):
-        new = X(x*self._cell_size, y*self._cell_size)
+        new = Letter("x", x*self._cell_size, y*self._cell_size)
         self._xs.add(new)
         self._update_all_sprites()
         self._grid[y][x] = "x"
@@ -39,7 +38,7 @@ class Grid:
         self._check_victory(x, y)
 
     def _add_o(self, x, y):
-        new = O(x*self._cell_size, y*self._cell_size)
+        new = Letter("o", x*self._cell_size, y*self._cell_size)
         self._os.add(new)
         self._update_all_sprites()
         self._grid[y][x] = "o"
@@ -169,13 +168,8 @@ class Grid:
     def _finish_game(self, line):
         symbol = self._grid[line[0][1]][line[0][0]]
         for coordinates in line:
-            if symbol == "x":
-                red_symbol = X(
-                    coordinates[0] * self._cell_size, coordinates[1] * self._cell_size, "red")
-                self._reds.add(red_symbol)
-            else:
-                red_symbol = O(
-                    coordinates[0] * self._cell_size, coordinates[1] * self._cell_size, "red")
-                self._reds.add(red_symbol)
+            red_symbol = Letter(
+                symbol, coordinates[0] * self._cell_size, coordinates[1] * self._cell_size, "red")
+            self._reds.add(red_symbol)
         self._update_all_sprites()
         self.game_over = True
