@@ -165,15 +165,13 @@ class Grid:
     def _get_current_players_letter(self):
         if self._player_turn == 0:
             return "x"
-        elif self._player_turn == 1:
+        if self._player_turn == 1:
             return "o"
-        elif self._player_turn == 2:
+        if self._player_turn == 2:
             return "y"
-        else:
-            return "z"
+        return "z"
 
     def _get_corrected_player_amount(self, players):
         if players not in [2, 3, 4]:
             return 2
-        else:
-            return players
+        return players
