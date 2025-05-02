@@ -24,3 +24,7 @@
 
 - Lisätty tuki myös kolmelle ja neljälle pelaajalle. Tämän voi valita muuttamalla ympäristömuuttujaa PLAYERS käynnistyksen yhteydessä.
 - Tehty docstringejä.
+
+## Viikko 7
+
+- Lisätty toiminnallisuus pelin aloittamiseksi alusta painamalla F2-näppäintä.

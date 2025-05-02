@@ -7,16 +7,16 @@ class Grid:
     """Luokka, joka vastaa pelin sovelluslogiikasta.
 
     Attributes:
+        game_over: Totuusarvo, joka kertoo, että onko peli ohi vai ei.
+        all_sprites: Kaikkien spritejen ryhmä.
         _victory_requirement: Voittosuoran pituusvaatimus.
         _players: Pelaajamäärä.
-        game_over: Totuusarvo, joka kertoo, että onko peli ohi vai ei.
-        _player_turn: Numero, joka kertoo, että kenen vuoro on seuraavaksi.
         _size: Ruudukon sivun pituus.
         _cell_size: Solun koko.
         _empties: Tyhjien spritejen ryhmä.
         _letters: Kirjain spritejen ryhmä.
         _reds: Punaisten spritejen ryhmä.
-        all_sprites: Kaikkien spritejen ryhmä.
+        _player_turn: Numero, joka kertoo, että kenen vuoro on seuraavaksi.
         _grid: Taulukko, jossa pidetään kirjaa ristikon nykytilanteesta.
     """
 
@@ -30,19 +30,19 @@ class Grid:
             players (int, optional): Pelaajamäärä. Defaults to 2.
         """
 
+        self.game_over = None
+        self.all_sprites = None
         self._victory_requirement = victory_requirement
         self._players = self._get_corrected_player_amount(players)
-        self.game_over = False
-        self._player_turn = 0
         self._size = size
         self._cell_size = cell_size
         self._empties = pygame.sprite.Group()
-        self._letters = pygame.sprite.Group()
-        self._reds = pygame.sprite.Group()
-        self.all_sprites = pygame.sprite.Group()
-        self._init_grid()
         self._add_empties()
-        self._update_all_sprites()
+        self._letters = None
+        self._reds = None
+        self._player_turn = None
+        self._grid = None
+        self.reset()
 
     def add(self, x, y):
         """Lisää merkin ruudukkoon ja tekee muut tämän yhteydessä vaadittavat toimenpiteet.
@@ -62,6 +62,17 @@ class Grid:
         self._advance_turn()
         self._check_victory(x, y)
 
+    def reset(self):
+        """Aloittaa pelin alusta.
+        """
+        self.game_over = False
+        self._player_turn = 0
+        self._init_grid()
+        self._letters = pygame.sprite.Group()
+        self._reds = pygame.sprite.Group()
+        self.all_sprites = pygame.sprite.Group()
+        self._update_all_sprites()
+
     def _add_empties(self):
         """Lisää tyhjät spritet tyhjien spritejen ryhmään.
         """
@@ -70,8 +81,6 @@ class Grid:
                 self._empties.add(Empty(x*self._cell_size, y*self._cell_size))
 
     def _init_grid(self):
-        """Alustaa taulukon, jossa pidetään kirjaa ristikon nykytilanteesta.
-        """
         self._grid = []
         for _ in range(self._size):
             self._grid.append(self._size*[0])

@@ -4,6 +4,7 @@ Pelin voittaa se pelaaja, jonka tarpeeksi monesta merkistä muodostuu katkeamato
 
 ## Dokumentaatio
 
+- [Käyttöopas](./dokumentaatio/kayttoopas.md)
 - [Vaatimusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
 - [Työaikakirjanpito](./dokumentaatio/tyoaikakirjanpito.md)
 - [Changelog](./dokumentaatio/changelog.md)

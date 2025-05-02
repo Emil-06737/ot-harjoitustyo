@@ -32,6 +32,9 @@ class Loop():
             if occurence.type == pygame.MOUSEBUTTONUP:
                 pos = pygame.mouse.get_pos()
                 self._grid.add(pos[0] // self._cell_size, pos[1] // self._cell_size)
+            if occurence.type == pygame.KEYDOWN:
+                if occurence.key == pygame.K_F2:
+                    self._grid.reset()
             if occurence.type == pygame.QUIT:
                 return False
         return True

@@ -65,3 +65,10 @@ class TestGrid(unittest.TestCase):
                           ["o", "x", 0],
                           [0, 0, "x"]]
         self.assertEqual(self.grid._check_ascending_diagonal_victory(0, 0), False)
+
+    def test_reset_resets__grid(self):
+        self.grid._grid = [["o", 0, "x"],
+                          ["o", "x", 0],
+                          ["x", 0, 0]]
+        self.grid.reset()
+        self.assertEqual(self.grid._grid, [[0, 0, 0], [0, 0, 0], [0, 0, 0]])
