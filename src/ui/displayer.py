@@ -61,7 +61,7 @@ class Displayer:
         texts.append(f"Pelien määrä: {played_games}")
         texts.append(f"Joista kaksinpelejä: {two_player_games}")
         texts.append("")
-        texts.append(f"Pelatuin koko: {most_common_size or "ei mikään"}")
+        texts.append(f"Pelatuin koko: {most_common_size or 'ei mikään'}")
         texts.append(f"Jonka pelimäärä: {common_size_games or 0}")
         return texts
 
