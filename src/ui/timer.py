@@ -1,5 +1,6 @@
 import pygame
 
+
 class Timer():
     """Luokka pelin ajoittamiseen.
     """

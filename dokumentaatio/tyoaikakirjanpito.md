@@ -12,4 +12,6 @@
 | 15.5.      | 1      | Tehty monta pientä pelin parannusta ja päivitetty changelogia ja työaikakirjanpitoa. |
 | 29.4.      | 2      | Lisätty tuki kolmelle ja neljälle pelaajalle ja lisätty docstringejä. |
 | 2.5.       | 1      | Lisätty toiminnallisuus aloittaa peli alusta painamalla F2-näppäintä. |
-| yhteensä   | 25     ||
+| 8.5.       | 1      | Suunniteltu statistiikkatoiminnallisuutta. |
+| 9.5.       | 5      | Luotu mahdollisuus nähdä muutama statistiikka painamalla F1-näppäintä. |
+| yhteensä   | 31     ||

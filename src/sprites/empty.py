@@ -1,6 +1,7 @@
 import os
 import pygame
 
+
 class Empty(pygame.sprite.Sprite):
     """Luokka, jolla luodaan spritejä, jotka vastaavat tyhjiä ruutuja.
 
@@ -22,7 +23,8 @@ class Empty(pygame.sprite.Sprite):
 
         super().__init__()
         self.image = pygame.image.load(
-            os.path.join(os.path.dirname(__file__), "..", "assets", "empty.png")
+            os.path.join(os.path.dirname(__file__),
+                         "..", "assets", "empty.png")
         )
         self.rect = self.image.get_rect()
         self.rect.x = x

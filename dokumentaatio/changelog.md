@@ -28,3 +28,7 @@
 ## Viikko 7
 
 - Lisätty toiminnallisuus pelin aloittamiseksi alusta painamalla F2-näppäintä.
+
+## Viikko 8
+
+- Lisätty mahdollisuus nähdä muutama statistiikka painamalla F1-näppäintä, jota varten otettu käyttöön tietokanta ja sitä käyttävä luokka StatisticsRepository.

@@ -1,6 +1,7 @@
 import os
 import pygame
 
+
 class Letter(pygame.sprite.Sprite):
     """Luokka, jolla luodaan spritejä, jotka vastaavat pelaajien merkkejä.
 
@@ -24,7 +25,8 @@ class Letter(pygame.sprite.Sprite):
 
         super().__init__()
         self.image = pygame.image.load(
-            os.path.join(os.path.dirname(__file__), "..", "assets", color + " " + letter + ".png")
+            os.path.join(os.path.dirname(__file__), "..",
+                         "assets", color + " " + letter + ".png")
         )
         self.rect = self.image.get_rect()
         self.rect.x = x

@@ -23,7 +23,13 @@ Pelin voittaa se pelaaja, jonka tarpeeksi monesta merkistä muodostuu katkeamato
 poetry install
 ```
 
-2. Aja käynnistämiskomento:
+2. Aja alustuskomento:
+
+```bash
+poetry run invoke initialize
+```
+
+3. Aja käynnistämiskomento:
 
 ```bash
 poetry run invoke start

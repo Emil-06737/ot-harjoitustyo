@@ -1,5 +1,6 @@
 import pygame
 
+
 class OccurenceSequence:
     """Luokka tapahtumien hakemiseen.
     """

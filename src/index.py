@@ -8,6 +8,7 @@ from ui.timer import Timer
 
 CELL_SIZE = 50
 
+
 def main():
     size, length, players = get_setting_variables()
     display = pygame.display.set_mode((size * CELL_SIZE, size * CELL_SIZE))
@@ -19,6 +20,7 @@ def main():
     loop = Loop(displayer, occurence_sequence, CELL_SIZE, grid, timer)
     pygame.init()
     loop.begin()
+
 
 def get_setting_variables():
     try:
@@ -34,6 +36,7 @@ def get_setting_variables():
     except KeyError:
         players = 2
     return size, length, players
+
 
 if __name__ == "__main__":
     main()

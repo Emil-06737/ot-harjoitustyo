@@ -1,6 +1,9 @@
 import pygame
 from sprites.empty import Empty
 from sprites.letter import Letter
+from repositories.statistics_repository import (
+    statistics_repository as default_statistics_repository
+)
 
 
 class Grid:
@@ -9,6 +12,7 @@ class Grid:
     Attributes:
         game_over: Totuusarvo, joka kertoo, että onko peli ohi vai ei.
         all_sprites: Kaikkien spritejen ryhmä.
+        _statistics_repository: StatisticsRepository-olio.
         _victory_requirement: Voittosuoran pituusvaatimus.
         _players: Pelaajamäärä.
         _size: Ruudukon sivun pituus.
@@ -20,7 +24,8 @@ class Grid:
         _grid: Taulukko, jossa pidetään kirjaa ristikon nykytilanteesta.
     """
 
-    def __init__(self, size, cell_size, victory_requirement=5, players=2):
+    def __init__(self, size, cell_size, victory_requirement=5, players=2, \
+                 *, statistics_repository=default_statistics_repository):
         """Luokan konstruktori, jolla luodaan uusi peli.
 
         Args:
@@ -28,10 +33,13 @@ class Grid:
             cell_size: Solun koko.
             victory_requirement (int, optional): Voittosuoran pituusvaatimus. Defaults to 5.
             players (int, optional): Pelaajamäärä. Defaults to 2.
+            statistics_reporitory (optional): StatisticsRepository-olio.
+                Defaults to default_statistics_repository.
         """
 
         self.game_over = None
         self.all_sprites = None
+        self._statistics_repository = statistics_repository
         self._victory_requirement = victory_requirement
         self._players = self._get_corrected_player_amount(players)
         self._size = size
@@ -48,8 +56,8 @@ class Grid:
         """Lisää merkin ruudukkoon ja tekee muut tämän yhteydessä vaadittavat toimenpiteet.
 
         Args:
-            x: X-koordinaatti lisättävälle merkille
-            y: Y-koordinaatti lisättävälle merkille
+            x: x-koordinaatti lisättävälle merkille
+            y: y-koordinaatti lisättävälle merkille
         """
         if self.game_over or x >= self._size or y >= self._size:
             return
@@ -72,6 +80,12 @@ class Grid:
         self._reds = pygame.sprite.Group()
         self.all_sprites = pygame.sprite.Group()
         self._update_all_sprites()
+
+    def get_played_games(self, players=None, size=None):
+        return self._statistics_repository.get_game_count(players, size)
+
+    def get_info_of_the_most_common_game_size(self):
+        return self._statistics_repository.get_info_of_the_most_common_grid_size()
 
     def _add_empties(self):
         """Lisää tyhjät spritet tyhjien spritejen ryhmään.
@@ -137,7 +151,6 @@ class Grid:
             self._finish_game(line)
             return True
         return False
-
 
     def _check_horizontal_victory(self, x, y):
         """Tarkistaa, että onko vaakasuora voitto tapahtunut,
@@ -253,13 +266,6 @@ class Grid:
         return False
 
     def _finish_game(self, line):
-        """Tekee tarvittafat toimenpiteet, kun voitto on tapahtunut.
-
-        Args:
-            line: Lista, joka koostuu voittosuoran pisteistä,
-            jotka ovat tupleja muotoa (x, y),
-            jossa x on pisteen x-koordinaatti ja y on pisteen y-koordinaatti.
-        """
         symbol = self._grid[line[0][1]][line[0][0]]
         for coordinates in line:
             red_symbol = Letter(
@@ -267,6 +273,7 @@ class Grid:
             self._reds.add(red_symbol)
         self._update_all_sprites()
         self.game_over = True
+        self._statistics_repository.add_game(self._players, self._size)
 
     def _advance_turn(self):
         """Siirtää vuoron seuraavalle pelaajalle.
