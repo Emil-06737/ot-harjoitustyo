@@ -76,3 +76,15 @@ SIZE=20
 LENGTH=6
 PLAYERS=3
 ```
+
+Myös tietokannan nimeä voi muuttaa muuttamalla .env-tiedoston sisältöä. Tämän muuttaminen parantaa tietoturvaa. Lisättävä rivi on seuraavaa muotoa:
+
+```
+NAME_OF_DATABASE_FILE=HALUAMASI_NIMI.sqlite
+```
+
+Tietokannan nimen muuttamisen jälkeen täytyy vielä ajaa alustuskomento uudestaan, jotta peli toimii:
+
+```bash
+poetry run invoke initialize
+```
