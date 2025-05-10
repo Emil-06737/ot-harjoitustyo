@@ -19,20 +19,17 @@ if NAME_OF_DATABASE_FILE[-7:] != ".sqlite":
 PATH_OF_DATABASE_FILE = os.path.join(
     current_directory, "..", "data", NAME_OF_DATABASE_FILE)
 
-SIZE = os.getenv("SIZE") or DEFAULT_SIZE
 try:
-    SIZE = int(SIZE)
-except ValueError:
+    SIZE = int(os.getenv("SIZE"))
+except (ValueError, TypeError) as e:
     SIZE = DEFAULT_SIZE
 
-LENGTH = os.getenv("LENGTH") or DEFAULT_LENGTH
 try:
-    LENGTH = int(LENGTH)
-except ValueError:
+    LENGTH = int(os.getenv("LENGTH"))
+except (ValueError, TypeError) as e:
     LENGTH = DEFAULT_LENGTH
 
-PLAYERS = os.getenv("PLAYERS") or DEFAULT_PLAYERS
 try:
-    PLAYERS = int(PLAYERS)
-except ValueError:
+    PLAYERS = int(os.getenv("PLAYERS"))
+except (ValueError, TypeError) as e:
     PLAYERS = DEFAULT_PLAYERS
