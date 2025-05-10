@@ -15,6 +15,29 @@ class TestGrid(unittest.TestCase):
         self.grid.add(2, 1)
         self.assertEqual(self.grid._grid, [["x", "x", "x"], ["o", "o", 0], [0, 0, 0]])
 
+    def test__grid_is_correct_after_playing_a_big_game_and_trying_to_add_an_extra_symbol(self):
+        self.grid = Grid(10, 50, 5)
+        self.grid.add(0, 0)
+        self.grid.add(1, 0)
+        self.grid.add(0, 1)
+        self.grid.add(1, 1)
+        self.grid.add(0, 2)
+        self.grid.add(1, 2)
+        self.grid.add(0, 3)
+        self.grid.add(1, 3)
+        self.grid.add(0, 4)
+        self.grid.add(1, 4)
+        self.assertEqual(self.grid._grid, [["x", "o", 0, 0, 0, 0, 0, 0, 0, 0],
+                         ["x", "o", 0, 0, 0, 0, 0, 0, 0, 0],
+                         ["x", "o", 0, 0, 0, 0, 0, 0, 0, 0],
+                         ["x", "o", 0, 0, 0, 0, 0, 0, 0, 0],
+                         ["x", 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]])
+
     def test_add_updates_the_grid_correctly(self):
         self.grid.add(0, 0)
         self.assertEqual(self.grid._grid, [["x", 0, 0], [0, 0, 0], [0, 0, 0]])
