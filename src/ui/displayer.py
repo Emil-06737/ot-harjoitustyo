@@ -21,7 +21,7 @@ class Displayer:
         """Päivittää näytön.
         """
 
-        self._grid.all_sprites.draw(self._display)
+        self._grid.sprites.all_sprites.draw(self._display)
         if self._show_info:
             self._display_info_with_background()
         pygame.display.update()

@@ -1,4 +1,4 @@
-import pygame
+from services.sprites_for_grid import SpritesForGrid
 from sprites.empty import Empty
 from sprites.letter import Letter
 from repositories.statistics_repository import (
@@ -11,17 +11,14 @@ class Grid:
 
     Attributes:
         game_over: Totuusarvo, joka kertoo, että onko peli ohi vai ei.
-        all_sprites: Kaikkien spritejen ryhmä.
         _statistics_repository: StatisticsRepository-olio.
         _victory_requirement: Voittosuoran pituusvaatimus.
         _players: Pelaajamäärä.
         _size: Ruudukon sivun pituus.
         _cell_size: Solun koko.
-        _empties: Tyhjien spritejen ryhmä.
-        _letters: Kirjain spritejen ryhmä.
-        _reds: Punaisten spritejen ryhmä.
         _player_turn: Numero, joka kertoo, että kenen vuoro on seuraavaksi.
         _grid: Taulukko, jossa pidetään kirjaa ristikon nykytilanteesta.
+        sprites: Olio, johon on tallennettu spritet.
     """
 
     def __init__(self, size, cell_size, victory_requirement=5, players=2, \
@@ -38,19 +35,25 @@ class Grid:
         """
 
         self.game_over = None
-        self.all_sprites = None
+        self.sprites = None
         self._statistics_repository = statistics_repository
         self._victory_requirement = victory_requirement
         self._players = self._get_corrected_player_amount(players)
         self._size = size
         self._cell_size = cell_size
-        self._empties = pygame.sprite.Group()
-        self._add_empties()
-        self._letters = None
-        self._reds = None
         self._player_turn = None
         self._grid = None
         self.reset()
+
+    def reset(self):
+        """Aloittaa pelin alusta.
+        """
+        self.game_over = False
+        self._player_turn = 0
+        self._init_grid()
+        self.sprites = SpritesForGrid()
+        self._add_empties()
+        self._update_all_sprites()
 
     def add(self, x, y):
         """Lisää merkin ruudukkoon ja tekee muut tämän yhteydessä vaadittavat toimenpiteet.
@@ -64,24 +67,13 @@ class Grid:
         if self._grid[y][x]:
             return
         letter = self._get_current_players_letter()
-        self._letters.add(Letter(letter, x*self._cell_size, y*self._cell_size))
+        self.sprites.letters.add(Letter(letter, x*self._cell_size, y*self._cell_size))
         self._grid[y][x] = letter
         self._update_all_sprites()
         self._advance_turn()
         winning_line = self._get_winning_line(x, y)
         if winning_line:
             self._finish_game(winning_line)
-
-    def reset(self):
-        """Aloittaa pelin alusta.
-        """
-        self.game_over = False
-        self._player_turn = 0
-        self._init_grid()
-        self._letters = pygame.sprite.Group()
-        self._reds = pygame.sprite.Group()
-        self.all_sprites = pygame.sprite.Group()
-        self._update_all_sprites()
 
     def get_played_games(self, players=None, size=None):
         return self._statistics_repository.get_game_count(players, size)
@@ -94,7 +86,7 @@ class Grid:
         """
         for y in range(self._size):
             for x in range(self._size):
-                self._empties.add(Empty(x*self._cell_size, y*self._cell_size))
+                self.sprites.empties.add(Empty(x*self._cell_size, y*self._cell_size))
 
     def _init_grid(self):
         self._grid = []
@@ -104,11 +96,11 @@ class Grid:
     def _update_all_sprites(self):
         """Päivittää kaikkien spritejen ryhmän.
         """
-        self.all_sprites.empty()
-        self.all_sprites.add(
-            self._empties,
-            self._letters,
-            self._reds
+        self.sprites.all_sprites.empty()
+        self.sprites.all_sprites.add(
+            self.sprites.empties,
+            self.sprites.letters,
+            self.sprites.reds
         )
 
     def _get_winning_line(self, x, y):
@@ -215,7 +207,7 @@ class Grid:
         for coordinates in line:
             red_symbol = Letter(
                 symbol, coordinates[0] * self._cell_size, coordinates[1] * self._cell_size, "red")
-            self._reds.add(red_symbol)
+            self.sprites.reds.add(red_symbol)
         self._update_all_sprites()
         self.game_over = True
         self._statistics_repository.add_game(self._players, self._size)

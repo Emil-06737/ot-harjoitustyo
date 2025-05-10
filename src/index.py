@@ -1,6 +1,6 @@
 import os
 import pygame
-from grid import Grid
+from services.grid import Grid
 from ui.displayer import Displayer
 from ui.occurence_sequence import OccurenceSequence
 from ui.loop import Loop
