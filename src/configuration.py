@@ -5,6 +5,8 @@ DEFAULT_NAME_OF_DATABASE_FILE = "database.sqlite"
 DEFAULT_SIZE = 13
 DEFAULT_LENGTH = 5
 DEFAULT_PLAYERS = 2
+MIN_SIZE = 3
+MAX_SIZE = 86
 
 current_directory = os.path.dirname(__file__)
 try:
@@ -23,6 +25,8 @@ try:
     SIZE = int(os.getenv("SIZE"))
 except (ValueError, TypeError) as e:
     SIZE = DEFAULT_SIZE
+SIZE = max(SIZE, MIN_SIZE)
+SIZE = min(SIZE, MAX_SIZE)
 
 try:
     LENGTH = int(os.getenv("LENGTH"))
