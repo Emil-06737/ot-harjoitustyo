@@ -12,16 +12,16 @@ class Grid:
     Attributes:
         game_over: Totuusarvo, joka kertoo, että onko peli ohi vai ei.
         _statistics_repository: StatisticsRepository-olio.
-        _victory_requirement: Voittosuoran pituusvaatimus.
         _players: Pelaajamäärä.
         _size: Ruudukon sivun pituus.
+        _victory_requirement: Voittosuoran pituusvaatimus.
         _cell_size: Solun koko.
         _player_turn: Numero, joka kertoo, että kenen vuoro on seuraavaksi.
         _grid: Taulukko, jossa pidetään kirjaa ristikon nykytilanteesta.
         sprites: Olio, johon on tallennettu spritet.
     """
 
-    def __init__(self, size, cell_size, victory_requirement=5, players=2, \
+    def __init__(self, size: int, cell_size, victory_requirement=5, players=2, \
                  *, statistics_repository=default_statistics_repository):
         """Luokan konstruktori, jolla luodaan uusi peli.
 
@@ -37,9 +37,9 @@ class Grid:
         self.game_over = None
         self.sprites = None
         self._statistics_repository = statistics_repository
-        self._victory_requirement = victory_requirement
         self._players = self._get_corrected_player_amount(players)
-        self._size = size
+        self._size = self._get_corrected_size(size)
+        self._victory_requirement = self._get_corrected_victory_requirement(victory_requirement)
         self._cell_size = cell_size
         self._player_turn = None
         self._grid = None
@@ -232,14 +232,14 @@ class Grid:
         return "z"
 
     def _get_corrected_player_amount(self, players):
-        """Palauttaa hyväksyttävän pelaajamäärän, joka on tarvittaessa korjattu.
+        players = max(players, 2)
+        return min(players, 4)
 
-        Args:
-            players: Pelaajamäärä.
+    def _get_corrected_size(self, size):
+        size = max(size, 3)
+        return min(size, 86)
 
-        Returns:
-            2, 3 tai 4, jos annettu pelaajamäärä on jokin näistä, muulloin 2.
-        """
-        if players not in [2, 3, 4]:
-            return 2
-        return players
+    def _get_corrected_victory_requirement(self, victory_requirement):
+        victory_requirement = max(victory_requirement, 3)
+        victory_requirement = min(victory_requirement, 10)
+        return min(victory_requirement, self._size)

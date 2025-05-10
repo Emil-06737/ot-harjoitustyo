@@ -63,7 +63,7 @@ poetry run invoke lint
 
 ## Pelin asetusten muuttaminen
 
-Voit muuttaa pelin kokoa ja/tai voittosuoran pituutta ja/tai pelaajamäärää käynnistyksen yhteydessä määrittelemällä ympäristömuuttujat SIZE ja/tai LENGTH ja/tai PLAYERS. Pelaajamäärän täytyy olla 2-4. Jos esim. haluat, että ruudukon koko on 20 x 20 ja että voittosuoran pituus on 6 ja että pelaajia on 3, aja komento:
+Voit muuttaa pelin kokoa ja/tai voittosuoran pituutta ja/tai pelaajamäärää käynnistyksen yhteydessä määrittelemällä ympäristömuuttujat SIZE ja/tai LENGTH ja/tai PLAYERS. Pelin koon täytyy olla 3-86, voittosuoran pituuden täytyy olla 3-10 ja pienempi kuin pelin koko ja pelaajamäärän täytyy olla 2-4. Jos esim. haluat, että ruudukon koko on 20 x 20 ja että voittosuoran pituus on 6 ja että pelaajia on 3, aja komento:
 
 ```bash
 SIZE=20 LENGTH=6 PLAYERS=3 poetry run invoke start
