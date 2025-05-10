@@ -6,6 +6,15 @@ class TestGrid(unittest.TestCase):
     def setUp(self):
         self.grid = Grid(3, 50, 3)
 
+    def test__grid_is_correct_after_playing_a_game_and_trying_to_add_an_extra_symbol(self):
+        self.grid.add(0, 0)
+        self.grid.add(0, 1)
+        self.grid.add(1, 0)
+        self.grid.add(1, 1)
+        self.grid.add(2, 0)
+        self.grid.add(2, 1)
+        self.assertEqual(self.grid._grid, [["x", "x", "x"], ["o", "o", 0], [0, 0, 0]])
+
     def test_add_updates_the_grid_correctly(self):
         self.grid.add(0, 0)
         self.assertEqual(self.grid._grid, [["x", 0, 0], [0, 0, 0], [0, 0, 0]])
