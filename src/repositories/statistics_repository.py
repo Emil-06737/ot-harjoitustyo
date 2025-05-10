@@ -57,5 +57,13 @@ class StatisticsRepository:
             return None, None
         return (result[0], result[1])
 
+    def delete_all(self):
+        """Poistaa tietokannan sisällön.
+        """
+
+        cursor = self._connection.cursor()
+        cursor.execute("DELETE FROM finished_games")
+        self._connection.commit()
+
 
 statistics_repository = StatisticsRepository(get_db_connection())
