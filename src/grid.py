@@ -68,7 +68,9 @@ class Grid:
         self._grid[y][x] = letter
         self._update_all_sprites()
         self._advance_turn()
-        self._check_victory(x, y)
+        winning_line = self._get_winning_line(x, y)
+        if winning_line:
+            self._finish_game(winning_line)
 
     def reset(self):
         """Aloittaa pelin alusta.
@@ -109,30 +111,16 @@ class Grid:
             self._reds
         )
 
-    def _check_victory(self, x, y):
-        """Tarkistaa, että onko peli ohi, ja tekee tarvittavat toimenpiteet, jos näin on.
+    def _get_winning_line(self, x, y):
+        winning_line = self._get_winning_vertical_line(x, y)
+        if winning_line:
+            return winning_line
+        winning_line = self._get_winning_horizontal_line(x, y)
+        if winning_line:
+            return winning_line
+        return self._get_winning_diagonal_line(x, y)
 
-        Args:
-            x: Viimeksi lisätyn merkin x-koordinaatti.
-            y: Viimeksi lisätyn merkin y-koordinaatti.
-        """
-        if self._check_vertical_victory(x, y):
-            return
-        if self._check_horizontal_victory(x, y):
-            return
-        self._check_diagonal_victory(x, y)
-
-    def _check_vertical_victory(self, x, y):
-        """Tarkistaa, että onko pystysuora voitto tapahtunut,
-        ja tekee tarvittavat toimenpiteet, jos näin on.
-
-        Args:
-            x: Viimeksi lisätyn merkin x-koordinaatti.
-            y: Viimeksi lisätyn merkin y-koordinaatti.
-
-        Returns:
-            True, jos pystysuora voitto on tapahtunut, muulloin False.
-        """
+    def _get_winning_vertical_line(self, x, y):
         symbol = self._grid[y][x]
         line = [(x, y)]
         for y1 in range(y - 1, -1, -1):
@@ -148,21 +136,10 @@ class Grid:
             else:
                 break
         if len(line) >= self._victory_requirement:
-            self._finish_game(line)
-            return True
-        return False
+            return sorted(line)
+        return None
 
-    def _check_horizontal_victory(self, x, y):
-        """Tarkistaa, että onko vaakasuora voitto tapahtunut,
-        ja tekee tarvittavat toimenpiteet, jos näin on.
-
-        Args:
-            x: Viimeksi lisätyn merkin x-koordinaatti.
-            y: Viimeksi lisätyn merkin y-koordinaatti.
-
-        Returns:
-            True, jos vaakasuora voitto on tapahtunut, muulloin False.
-        """
+    def _get_winning_horizontal_line(self, x, y):
         symbol = self._grid[y][x]
         line = [(x, y)]
         for x1 in range(x - 1, -1, -1):
@@ -178,36 +155,16 @@ class Grid:
             else:
                 break
         if len(line) >= self._victory_requirement:
-            self._finish_game(line)
-            return True
-        return False
+            return sorted(line)
+        return None
 
-    def _check_diagonal_victory(self, x, y):
-        """Tarkistaa, että onko diagonaalinen voitto tapahtunut,
-        ja tekee tarvittavat toimenpiteet, jos näin on.
+    def _get_winning_diagonal_line(self, x, y):
+        winning_line = self._get_winning_descending_diagonal_line(x, y)
+        if winning_line:
+            return winning_line
+        return self._get_winning_ascending_diagonal_line(x, y)
 
-        Args:
-            x: Viimeksi lisätyn merkin x-koordinaatti.
-            y: Viimeksi lisätyn merkin y-koordinaatti.
-
-        Returns:
-            True, jos diagonaalinen voitto on tapahtunut, muulloin False.
-        """
-        if self._check_descending_diagonal_victory(x, y):
-            return True
-        return self._check_ascending_diagonal_victory(x, y)
-
-    def _check_descending_diagonal_victory(self, x, y):
-        """Tarkistaa, että onko laskeva diagonaalinen voitto tapahtunut,
-        ja tekee tarvittavat toimenpiteet, jos näin on.
-
-        Args:
-            x: Viimeksi lisätyn merkin x-koordinaatti.
-            y: Viimeksi lisätyn merkin y-koordinaatti.
-
-        Returns:
-            True, jos laskeva diagonaalinen voitto on tapahtunut, muulloin False.
-        """
+    def _get_winning_descending_diagonal_line(self, x, y):
         symbol = self._grid[y][x]
         line = [(x, y)]
         for increment in range(1, min(x, y) + 1):
@@ -227,21 +184,10 @@ class Grid:
             else:
                 break
         if len(line) >= self._victory_requirement:
-            self._finish_game(line)
-            return True
-        return False
+            return sorted(line)
+        return None
 
-    def _check_ascending_diagonal_victory(self, x, y):
-        """Tarkistaa, että onko laskeva diagonaalinen voitto tapahtunut,
-        ja tekee tarvittavat toimenpiteet, jos näin on.
-
-        Args:
-            x: Viimeksi lisätyn merkin x-koordinaatti.
-            y: Viimeksi lisätyn merkin y-koordinaatti.
-
-        Returns:
-            True, jos nouseva diagonaalinen voitto on tapahtunut, muulloin False.
-        """
+    def _get_winning_ascending_diagonal_line(self, x, y):
         symbol = self._grid[y][x]
         line = [(x, y)]
         for increment in range(1, min(x + 1, self._size - y)):
@@ -261,9 +207,8 @@ class Grid:
             else:
                 break
         if len(line) >= self._victory_requirement:
-            self._finish_game(line)
-            return True
-        return False
+            return sorted(line)
+        return None
 
     def _finish_game(self, line):
         symbol = self._grid[line[0][1]][line[0][0]]
