@@ -68,3 +68,11 @@ Voit muuttaa pelin kokoa ja/tai voittosuoran pituutta ja/tai pelaajamäärää k
 ```bash
 SIZE=20 LENGTH=6 PLAYERS=3 poetry run invoke start
 ```
+
+Voit muuttaa oletusasetuksia luomalla .env-tiedoston projektin juurihakemistoon (hakemisto, jossa mm. .env.test sijaitsee) ja muuttamalla sen sisältöä. Jos esim. haluat, että edellä mainitut asetukset ovat oletusasetuksena, muuta .env-tiedosto seuraavanlaiseksi:
+
+```
+SIZE=20
+LENGTH=6
+PLAYERS=3
+```
