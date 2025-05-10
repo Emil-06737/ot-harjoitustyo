@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
 
+DEFAULT_NAME_OF_DATABASE_FILE = "database.sqlite"
 DEFAULT_SIZE = 13
 DEFAULT_LENGTH = 5
 DEFAULT_PLAYERS = 2
@@ -10,7 +11,11 @@ try:
     load_dotenv(dotenv_path=os.path.join(current_directory, "..", ".env"))
 except FileNotFoundError:
     pass
-NAME_OF_DATABASE_FILE = os.getenv("NAME_OF_DATABASE_FILE") or "database.sqlite"
+
+NAME_OF_DATABASE_FILE = os.getenv("NAME_OF_DATABASE_FILE") or DEFAULT_NAME_OF_DATABASE_FILE
+if NAME_OF_DATABASE_FILE[-7:] != ".sqlite":
+    NAME_OF_DATABASE_FILE = DEFAULT_NAME_OF_DATABASE_FILE
+
 PATH_OF_DATABASE_FILE = os.path.join(
     current_directory, "..", "data", NAME_OF_DATABASE_FILE)
 
