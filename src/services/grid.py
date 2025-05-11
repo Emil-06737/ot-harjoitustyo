@@ -39,7 +39,7 @@ class Grid:
         self._statistics_repository = statistics_repository
         self._players = self._get_corrected_player_amount(players)
         self._size = self._get_corrected_size(size)
-        self._victory_requirement = self._get_corrected_victory_requirement(victory_requirement)
+        self._victory_requirement = self._get_corrected_victory_requirement(victory_requirement, self._size)
         self._cell_size = cell_size
         self._player_turn = None
         self._grid = None
@@ -239,7 +239,7 @@ class Grid:
         size = max(size, 3)
         return min(size, 86)
 
-    def _get_corrected_victory_requirement(self, victory_requirement):
+    def _get_corrected_victory_requirement(self, victory_requirement, grid_size):
         victory_requirement = max(victory_requirement, 3)
         victory_requirement = min(victory_requirement, 10)
-        return min(victory_requirement, self._size)
+        return min(victory_requirement, grid_size)
