@@ -28,6 +28,8 @@ poetry run invoke start
 
 ## Pelin näppäimet
 
+Huom.! Kannettavalla tietokoneella F1-F12 -toimintojen aktivoiminen onnistuu todennäköisesti niin, että pitää Fn-näppäintä pohjassa näppäimiä painettaessa.
+
 - Vasen hiirinäppäin: Aseta merkki ruudukkoon.
 - F1: Näytä statistiikka.
 - F2: Aloita uusi peli.
