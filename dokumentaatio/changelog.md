@@ -31,4 +31,4 @@
 
 ## Viikko 8
 
-- Lisätty mahdollisuus nähdä muutama statistiikka painamalla F1-näppäintä, jota varten otettu käyttöön tietokanta ja sitä käyttävä luokka StatisticsRepository.
+- Lisätty mahdollisuus nähdä muutama statistiikka painamalla F1-näppäintä, jota varten otettu käyttöön tietokanta ja sitä käyttävä luokka FinishedGameRepository.
