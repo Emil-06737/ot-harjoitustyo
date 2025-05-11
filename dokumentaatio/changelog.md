@@ -32,3 +32,8 @@
 ## Viikko 8
 
 - Lisätty mahdollisuus nähdä muutama statistiikka painamalla F1-näppäintä, jota varten otettu käyttöön tietokanta ja sitä käyttävä luokka FinishedGameRepository.
+- env-tiedoston käyttö on mahdollistettu.
+- Parannettu käyttäjän syötteiden validointia.
+- Tehty lisää testejä etenkin StatisticsRepository-luokkaa testaavia testejä.
+- Korvattu kuvan päivittäminen niin, että nyt Displayer käyttää grid-attribuuttia spritejen sijaan.
+- Päivitetty arkkitehtuurikuvausta.
