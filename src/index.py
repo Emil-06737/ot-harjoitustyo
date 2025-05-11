@@ -13,7 +13,7 @@ def main():
     display = pygame.display.set_mode((SIZE * CELL_SIZE, SIZE * CELL_SIZE))
     pygame.display.set_caption("Ristinolla")
     grid = Grid(SIZE, LENGTH, PLAYERS)
-    displayer = Displayer(grid, display)
+    displayer = Displayer(grid, display, CELL_SIZE)
     occurence_sequence = OccurenceSequence()
     timer = Timer()
     loop = Loop(displayer, occurence_sequence, CELL_SIZE, grid, timer)
