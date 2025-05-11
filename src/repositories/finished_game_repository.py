@@ -1,7 +1,7 @@
 from connection_of_db import get_db_connection
 
 
-class StatisticsRepository:
+class FinishedGameRepository:
     """Tilastojen tallentamisesta vastaava luokka.
     """
 
@@ -66,4 +66,4 @@ class StatisticsRepository:
         self._connection.commit()
 
 
-statistics_repository = StatisticsRepository(get_db_connection())
+finished_game_repository = FinishedGameRepository(get_db_connection())

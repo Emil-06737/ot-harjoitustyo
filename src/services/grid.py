@@ -1,5 +1,5 @@
-from repositories.statistics_repository import (
-    statistics_repository as default_statistics_repository
+from repositories.finished_game_repository import (
+    finished_game_repository as default_finished_game_repository
 )
 
 
@@ -17,7 +17,7 @@ class Grid:
     """
 
     def __init__(self, size: int, victory_requirement=5, players=2, \
-                 *, statistics_repository=default_statistics_repository):
+                 *, finished_game_repository=default_finished_game_repository):
         """Luokan konstruktori, jolla luodaan uusi peli.
 
         Args:
@@ -31,7 +31,7 @@ class Grid:
         self.grid = None
         self.game_over = None
         self.size = self._get_corrected_size(size)
-        self._statistics_repository = statistics_repository
+        self._finished_game_repository = finished_game_repository
         self._players = self._get_corrected_player_amount(players)
         self._victory_requirement = self._get_corrected_victory_requirement(victory_requirement,
                                                                             self.size)
@@ -46,7 +46,8 @@ class Grid:
         self._init_grid()
 
     def add(self, x, y):
-        """Lisää merkin ruudukkoon, jos sallittua, ja tekee muut tämän yhteydessä vaadittavat toimenpiteet.
+        """Lisää merkin ruudukkoon, jos sallittua,
+        ja tekee muut tämän yhteydessä vaadittavat toimenpiteet.
 
         Args:
             x: x-koordinaatti lisättävälle merkille
@@ -64,10 +65,10 @@ class Grid:
             self._finish_game(winning_line)
 
     def get_played_games(self, players=None, size=None):
-        return self._statistics_repository.get_game_count(players, size)
+        return self._finished_game_repository.get_game_count(players, size)
 
     def get_info_of_the_most_common_game_size(self):
-        return self._statistics_repository.get_info_of_the_most_common_grid_size()
+        return self._finished_game_repository.get_info_of_the_most_common_grid_size()
 
     def _init_grid(self):
         self.grid = []
@@ -178,7 +179,7 @@ class Grid:
         for coordinates in line:
             self.grid[coordinates[1]][coordinates[0]] = "r" + symbol
         self.game_over = True
-        self._statistics_repository.add_game(self._players, self.size)
+        self._finished_game_repository.add_game(self._players, self.size)
 
     def _advance_turn(self):
         """Siirtää vuoron seuraavalle pelaajalle.
