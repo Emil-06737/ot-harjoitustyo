@@ -15,5 +15,5 @@
 | 8.5.       | 1      | Suunniteltu statistiikkatoiminnallisuutta. |
 | 9.5.       | 5      | Luotu mahdollisuus nähdä muutama statistiikka painamalla F1-näppäintä. |
 | 10.5.      | 5      | Muutettu voiton tarkistavie metodien toiminnallisuutta, päivitetty vaatimusmäärittelyä, otettu käyttöön SpritesForGrid, parannettu ympäristömuuttujien käyttöä, päivitetty dokumentaatiota, parannettu validointia, tehty lisää testejä etenkin StatisticsRepository-luokkaa testaavia testejä. |
-| 11.5.      | 3      | Korvattu kuvan päivittäminen niin, että displayer käyttää grid-attribuuttia spritejen sijaan. Päivitetty myös arkkitehtuurikuvausta. |
-| yhteensä   | 39     ||
+| 11.5.      | 4      | Korvattu kuvan päivittäminen niin, että displayer käyttää grid-attribuuttia spritejen sijaan. Päivitetty myös arkkitehtuurikuvausta, README:ta ja käyttöopasta. |
+| yhteensä   | 40     ||
