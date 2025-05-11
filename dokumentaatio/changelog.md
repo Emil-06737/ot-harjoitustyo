@@ -37,3 +37,4 @@
 - Tehty lisää testejä etenkin StatisticsRepository-luokkaa testaavia testejä.
 - Korvattu kuvan päivittäminen niin, että nyt Displayer käyttää grid-attribuuttia spritejen sijaan.
 - Päivitetty arkkitehtuurikuvausta.
+- Tehty testausdokumentti.

@@ -9,6 +9,7 @@ Pelin voittaa se pelaaja, jonka tarpeeksi monesta merkistä muodostuu katkeamato
 - [Työaikakirjanpito](./dokumentaatio/tyoaikakirjanpito.md)
 - [Changelog](./dokumentaatio/changelog.md)
 - [Arkkitehtuuri](./dokumentaatio/arkkitehtuuri.md)
+- [Testaus](./dokumentaatio/testaus.md)
 
 ## Release
 
