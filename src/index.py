@@ -1,9 +1,9 @@
 import pygame
-from services.grid import Grid
-from ui.displayer import Displayer
-from ui.occurence_sequence import OccurenceSequence
-from ui.loop import Loop
-from ui.timer import Timer
+from program_logic.grid import Grid
+from user_interface.displayer import Displayer
+from user_interface.occurence_sequence import OccurenceSequence
+from user_interface.loop import Loop
+from user_interface.timer import Timer
 from configuration import SIZE, LENGTH, PLAYERS
 
 CELL_SIZE = 50

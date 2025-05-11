@@ -1,5 +1,5 @@
 import unittest
-from services.grid import Grid
+from program_logic.grid import Grid
 
 
 class TestGrid(unittest.TestCase):
