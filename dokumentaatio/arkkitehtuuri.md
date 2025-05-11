@@ -1,31 +1,7 @@
-```mermaid
-classDiagram
-    Grid "1" -- "*" Empty
-    Grid "1" -- "*" X
-    Grid "1" -- "*" O
-    class Grid{
-        victory_requirement
-        game_over
-        x_turn
-        size
-        cell_size
-        empties
-        xs
-        os
-        reds
-        all_sprites
-        grid
-    }
-    class Empty{
-        image
-        rect
-    }
-    class X{
-        image
-        rect
-    }
-    class O{
-        image
-        rect
-    }
-```
+# Arkkitehtuuri
+
+## Struktuuri
+
+![pakkauskaavio](./kuvat/pakkauskaavio.png)
+
+Peli koostuu kolmesta kerroksesta kuvan mukaisesti. Ylimmän kerroksen user_interface vastaa käyttöliittymästä, toisen kerroksen program_logic vastaa sovelluslogiikasta ja kolmannen kerroksen repositories vastaa sellaisen tiedon tallennuksesta, jonka on tarkoitus säilyä, kun peli käynnistetään uudelleen.
