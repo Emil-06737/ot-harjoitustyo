@@ -14,3 +14,4 @@ Pelin voittaa se pelaaja, jonka tarpeeksi monesta merkistä muodostuu katkeamato
 - Tuki erisuuruisille ruudukoille. (tehty)
 - Tuki vapaavalintaiselle katkeamattoman suoran merkkimäärälle, joka on pelin voittoehto. (tehty)
 - Tuki seuraavien statistiikkatietojen näkemiseen: pelattujen pelien määrä, kaksinpelien määrä, yleisin ruudukkokoko, yleisimmän ruudukkokoon pelien määrä. (tehty)
+- Pelin voi aloittaa alusta painamalla F2-näppäintä. (tehty)
