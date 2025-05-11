@@ -7,11 +7,10 @@ Pelin voittaa se pelaaja, jonka tarpeeksi monesta merkistä muodostuu katkeamato
 ## Pelin toiminnallisuuksia ja ominaisuuksia
 
 - Yksi 2-4 pelaajasta voi vuorollansa laittaa merkkinsä valitsemaansa paikkaan ruudukossa. (tehty)
-- Peli päättyy, kun jompikumpi voittaa, kun muodostuu tarpeeksi pitkä katkeamaton suora. (tehty)
+    - Pelaaja ei voi laittaa merkkiä ruutuun silloin, kun ruudussa on jo merkki. (tehty)
+- Peli päättyy, kun jompikumpi voittaa eli kun muodostuu tarpeeksi pitkä (3-10 merkistä koostuva) katkeamaton suora. (tehty)
 - Voittosuorasta tulee punainen, kun voittosuora muodostuu. (tehty)
-- Peli päättyy, kun ruudukko tulee täyteen. (tehty)
 - Pelissä on graafinen käyttöliittymä. (tehty)
-- Tuki erisuuruisille ruudukoille. (tehty)
-- Tuki vapaavalintaiselle katkeamattoman suoran merkkimäärälle, joka on pelin voittoehto. (tehty)
-- Tuki seuraavien statistiikkatietojen näkemiseen: pelattujen pelien määrä, kaksinpelien määrä, yleisin ruudukkokoko, yleisimmän ruudukkokoon pelien määrä. (tehty)
+- Tuki erisuuruisille (3x3-86x86) ruudukoille. (tehty)
+- Tuki seuraavien statistiikkatietojen näkemiseen painamalla F1-näppäintä: pelattujen pelien määrä, kaksinpelien määrä, yleisin ruudukkokoko, yleisimmän ruudukkokoon pelien määrä. (tehty)
 - Pelin voi aloittaa alusta painamalla F2-näppäintä. (tehty)
